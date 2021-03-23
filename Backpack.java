@@ -3,5 +3,5 @@ public class Backpack {
     private int maxItems;
     private double currWeight;
     private double maxWeight;
-    private WeaponTable weaponsTable;
+    private Weapon[] table;
 }
