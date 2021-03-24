@@ -1,5 +1,5 @@
 public class Menu {
-
+    QuadHashTable storage;
 
     public void printMenu(){
         System.out.println("1)\tAdd Items to the shop");
@@ -11,7 +11,7 @@ public class Menu {
     }
 
     public void addItems(Weapon item){
-
+        storage.insert(item);
     }
 
     public void deleteItems(Weapon item){

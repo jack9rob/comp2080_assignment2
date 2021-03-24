@@ -14,9 +14,7 @@ public class Backpack {
     }
     public String viewItems(){
         String s = "";
-        for(weaponsTable i : weaponsTable.hashtable){
-            s += i + "\n";
-        }
+
         return s;
     }
 }

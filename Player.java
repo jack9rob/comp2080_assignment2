@@ -12,7 +12,7 @@ public class Player {
         return "Player{" +
                 "name='" + name + '\'' +
                 ", coins=" + coins +
-                ", backpack=" + backpack. +
+                ", backpack=" + backpack +
                 '}';
     }
 
