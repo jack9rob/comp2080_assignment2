@@ -8,4 +8,24 @@ public class Player {
         coins = 45;
 
     }
+
+    public boolean addWeapon(Weapon weapon) {
+        return backpack.addWeapon(weapon);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    public void viewBackPack() {
+
+    }
 }

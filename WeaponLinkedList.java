@@ -48,4 +48,14 @@ public class WeaponLinkedList {
         }
         return null;
     }
+
+    public void print() {
+        WNode curr = head;
+        String value = "List: ";
+        while(curr != null) {
+            value += curr.data.getName() + " ";
+            curr = curr.next;
+        }
+        System.out.println(value);
+    }
 }

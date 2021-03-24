@@ -16,4 +16,5 @@ public class Weapon {
     public String getName() {
         return weaponName;
     }
+    public double getWeight() { return weight;}
 }
