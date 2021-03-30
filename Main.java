@@ -1,5 +1,81 @@
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello");
+
+    public static int getUserIntInput(Scanner sc, String message){
+        System.out.println(message);
+        while(sc.hasNextInt()){
+            sc.nextLine();
+            System.out.println(message);
+        }
+        return sc.nextInt();
     }
-}
+
+    public static double getUserDoubleInput(Scanner sc, String message){
+        System.out.println(message);
+        while(sc.hasNextDouble()){
+            sc.nextLine();
+            System.out.println(message);
+        }
+        return sc.nextDouble();
+    }
+
+    public static void addItemsToShop(Scanner sc, ShopTable shopTable, String message){
+        System.out.println(message);
+        String weaponName = sc.next();
+        int quantity = getUserIntInput(sc, "…
+        public class Weapon {
+            private String weaponName;
+            private int range;
+            private int damage;
+            private double weight;
+            private double cost;
+
+            public Weapon(String weaponName, int range, int damage, double weight, double cost) {
+                this.weaponName = weaponName;
+                this.range = range;
+                this.damage = damage;
+                this.weight = weight;
+                this.cost = cost;
+            }
+
+            public String getWeaponName() {
+                return weaponName;
+            }
+
+            public void setWeaponName(String weaponName) {
+                this.weaponName = weaponName;
+            }
+
+            public int getRange() {
+                return range;
+            }
+
+            public void setRange(int range) {
+                this.range = range;
+            }
+
+            public int getDamage() {
+                return damage;
+            }
+
+            public void setDamage(int damage) {
+                this.damage = damage;
+            }
+
+            public double getWeight() {
+                return weight;
+            }
+
+            public void setWeight(double weight) {
+                this.weight = weight;
+            }
+
+            public double getCost() {
+                return cost;
+            }
+
+            public void setCost(double cost) {
+                this.cost = cost;
+            }
+        }
