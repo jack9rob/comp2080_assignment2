@@ -51,7 +51,7 @@ public class Shop {
         return false;
     }
 
-    public boolean delete(Weapon weapon){
+    public boolean delete(Weapon weapon){ // change to string plz
         int loc = search(weapon.getWeaponName());
         if(loc == -1) return false;
 

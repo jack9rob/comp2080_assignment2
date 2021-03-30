@@ -53,7 +53,7 @@ public class Main {
         System.out.println(message);
         shop.printShopItems();
         String userInput = sc.next();
-        if(shop.delete(new Weapon(userInput, -1, -1, -1, -1))) {
+        if(shop.delete(new Weapon(userInput, -1, -1, -1, -1))) { // lol change delete to string
             System.out.println("Item deleted");
         } else {
             System.out.println("not deleted");
