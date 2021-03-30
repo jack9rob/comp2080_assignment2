@@ -14,7 +14,7 @@ public class Shop {
     private int hashFunction(Weapon weapon){
         int value=0,weight=1;
         for (int x =0; x<weapon.getWeaponName().length();x++){
-            value += (weapon.getWeaponName().charAt(x)-'a'+1)*weight;
+            value += (weapon.getWeaponName().charAt(x) + 1)*weight;
             weight++;
         }
         return value%tableSize;
@@ -24,7 +24,7 @@ public class Shop {
         int count = 1;
         Weapon temp = new Weapon(weaponName, 0, 0, 0, 0);
         int loc = hashFunction(temp);
-        while (table[loc].weapon.getWeaponName().compareTo(weaponName)!=0 && table[loc] != null){
+        while (table[loc] != null && table[loc].weapon.getWeaponName().compareTo(weaponName)!=0 ){
             loc = (loc + (count*count))%tableSize;
             count++;
         }
@@ -51,18 +51,21 @@ public class Shop {
         return false;
     }
 
-    public void delete(Weapon weapon){
+    public boolean delete(Weapon weapon){
         int loc = search(weapon.getWeaponName());
-        if(loc == -1) return;
+        if(loc == -1) return false;
 
         table[loc].weapon.setWeaponName("DELETED");
         numItems--;
+        return true;
     }
 
     public String printShopItems(){
         String s = "";
         for(ShopItem i : table){
-            s += i.weapon.getWeaponName();
+            if(i != null) {
+                s += i.weapon.getWeaponName() + "\n";
+            }
         }
         return s;
     }
