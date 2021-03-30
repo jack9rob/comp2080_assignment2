@@ -77,27 +77,23 @@ public class Main {
         int userInput = getUserIntInput(scanner, "Enter a number please");
 
         while(userInput != 6) {
-            switch (userInput){
+            switch (userInput) {
                 case 1:
-                    addItemsToShop(scanner,shopTable,"Please enter the details");
+                    addItemsToShop(scanner, shopTable, "Please enter the details");
                     break;
                 case 2:
                     deleteItemsFromShop(scanner, shopTable, "Delete");
                     break;
                 case 3:
-
+                    // buy from shop method
                     break;
                 case 4:
-
+                    // print player backpack
                     break;
                 case 5:
-
-                    break;
-                case 6:
-
+                    // print player info
                     break;
             }
-
             System.out.println("1)\tAdd Items to the shop");
             System.out.println("2)\tDelete Items from the shop");
             System.out.println("3)\tBuy from the Shop");
@@ -106,8 +102,8 @@ public class Main {
             System.out.println("6)\tExit");
 
             userInput = getUserIntInput(scanner, "Enter a number please");
-
         }
+        System.out.println("Thank you, GOODBYE!");
 
     }
 }
