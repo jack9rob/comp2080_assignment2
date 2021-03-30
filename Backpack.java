@@ -31,11 +31,11 @@ public class Backpack {
     // can use print to print if weapon can't be added
     public boolean addWeapon(Weapon weapon) {
         if(numItems < maxItems && currWeight + weapon.getWeight() < maxWeight){
-            int loc = hashFunction(weapon.getName());
+            int loc = hashFunction(weapon.getWeaponName());
             table[loc].insert(weapon);
             currWeight += weapon.getWeight();
             numItems++;
-            System.out.println(weapon.getName() + ' ' + loc);
+            System.out.println(weapon.getWeaponName() + ' ' + loc);
             return true;
         }
         return false;

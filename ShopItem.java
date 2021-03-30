@@ -1,14 +1,14 @@
 public class ShopItem {
     public Weapon weapon;
-    public int stock;
+    public int quantity;
 
-    public ShopItem(Weapon weapon, int stock) {
+    public ShopItem(Weapon weapon, int quantity) {
         this.weapon = weapon;
-        this.stock = stock;
+        this.quantity = quantity;
     }
 
-    public ShopItem(String name, int range, int damage, double weight, double cost, int stock) {
+    public ShopItem(String name, int range, int damage, double weight, double cost, int quantity) {
         weapon = new Weapon(name, range, damage, weight, cost);
-        this.stock = stock;
+        this.quantity = quantity;
     }
 }

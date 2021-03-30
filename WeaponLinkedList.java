@@ -32,7 +32,7 @@ public class WeaponLinkedList {
     public Weapon getWeapon(String weaponName) {
         WNode curr = head;
         while(curr != null) {
-            if(curr.data.getName().equals(weaponName)) {
+            if(curr.data.getWeaponName().equals(weaponName)) {
                 return curr.data;
             }
         }
@@ -42,7 +42,7 @@ public class WeaponLinkedList {
     public boolean search(String weaponName) {
         WNode curr = head;
         while(curr != null) {
-            if(curr.data.getName().equals(weaponName)) {
+            if(curr.data.getWeaponName().equals(weaponName)) {
                 return true;
             }
         }
@@ -54,7 +54,7 @@ public class WeaponLinkedList {
         WNode curr = head;
         String value = "List: ";
         while(curr != null) {
-            value += curr.data.getName() + " ";
+            value += curr.data.getWeaponName() + " ";
             curr = curr.next;
         }
         System.out.println(value);
