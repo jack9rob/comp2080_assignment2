@@ -1,4 +1,5 @@
 public class Weapon {
+    // change to public?
     private String weaponName;
     private int range;
     private int damage;
@@ -13,8 +14,9 @@ public class Weapon {
         this.cost = cost;
     }
 
-    public String getName() {
-        return weaponName;
-    }
+    public String getName() { return weaponName;}
+    public int getRange() { return range;}
+    public int getDamage() { return damage;}
     public double getWeight() { return weight;}
+    public double getCost() { return cost;}
 }

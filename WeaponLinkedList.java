@@ -29,16 +29,6 @@ public class WeaponLinkedList {
         curr.next = newNode;
     }
 
-    public boolean contains(String weaponName) {
-        WNode curr = head;
-        while(curr != null) {
-            if(curr.data.getName().equals(weaponName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public Weapon getWeapon(String weaponName) {
         WNode curr = head;
         while(curr != null) {
@@ -49,6 +39,17 @@ public class WeaponLinkedList {
         return null;
     }
 
+    public boolean search(String weaponName) {
+        WNode curr = head;
+        while(curr != null) {
+            if(curr.data.getName().equals(weaponName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // need a string method
     public void print() {
         WNode curr = head;
         String value = "List: ";

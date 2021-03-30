@@ -6,10 +6,11 @@ public class Player {
     public Player(String name) {
         this.name = name;
         coins = 45;
-
+        backpack = new Backpack();
     }
 
-    public boolean addWeapon(Weapon weapon) {
+    public boolean buy(Weapon weapon) {
+        // check price
         return backpack.addWeapon(weapon);
     }
 
@@ -21,11 +22,28 @@ public class Player {
         return coins;
     }
 
-    public void setCoins(int coins) {
-        this.coins = coins;
+    public boolean deposit(int amount) {
+        if(amount > 0) {
+            coins += amount;
+            return true;
+        }
+        return false;
     }
 
-    public void viewBackPack() {
+    public boolean withdraw(int amount) {
+        if(coins - amount >= 0) {
+            coins -= amount;
+            return true;
+        }
+        return false;
+    }
 
+    public void printBackPack() {
+
+    }
+
+    // wrapper for backpack methods
+    public boolean addWeapon(Weapon w) {
+        return backpack.addWeapon(w);
     }
 }
