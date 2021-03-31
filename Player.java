@@ -1,6 +1,6 @@
 public class Player {
     private String name;
-    private int coins;
+    private double coins;
     private Backpack backpack;
 
 
@@ -19,7 +19,19 @@ public class Player {
         return name;
     }
 
-    public int getCoins() {
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    public Backpack getBackpack() {
+        return backpack;
+    }
+
+    public void setBackpack(Backpack backpack) {
+        this.backpack = backpack;
+    }
+
+    public double getCoins() {
         return coins;
     }
 
@@ -31,7 +43,7 @@ public class Player {
         return false;
     }
 
-    public boolean withdraw(int amount) {
+    public boolean withdraw(double amount) {
         if(coins - amount >= 0) {
             coins -= amount;
             return true;
@@ -40,11 +52,19 @@ public class Player {
     }
 
     public void printBackPack() {
-
+        backpack.printBackpack();
     }
 
     // wrapper for backpack methods
     public boolean addWeapon(Weapon w) {
         return backpack.addWeapon(w);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", coins=" + coins +
+                '}';
     }
 }

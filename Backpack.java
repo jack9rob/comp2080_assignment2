@@ -47,6 +47,18 @@ public class Backpack {
         }
     }
 
+    public double getMaxWeight() {
+        return maxWeight;
+    }
+
+    public double getCurrWeight() {
+        return currWeight;
+    }
+
+    public void setCurrWeight(double currWeight) {
+        this.currWeight = currWeight;
+    }
+
     public boolean inventoryFull() {
         return numItems >= maxItems;
     }
