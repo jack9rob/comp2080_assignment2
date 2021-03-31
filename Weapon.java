@@ -7,18 +7,13 @@ public class Weapon {
     private double weight;
     private double cost;
 
-<<<<<<< HEAD
-    public Weapon(String weaponName, int range, int damage, double weight, double cost) {
-        this.weaponName = weaponName;
-=======
-    public Weapon(String name, int range, int damage, double weight, double cost) {
-        this.weaponName = name;
->>>>>>> cc5c3c5869a6c8d6fe541cdd35f9e07b65c49c8b
-        this.range = range;
-        this.damage = damage;
-        this.weight = weight;
-        this.cost = cost;
-    }
+        public Weapon(String name, int range, int damage, double weight, double cost) {
+            this.weaponName = name;
+            this.range = range;
+            this.damage = damage;
+            this.weight = weight;
+            this.cost = cost;
+        }
 
     public String getWeaponName() {
         return weaponName;

@@ -52,12 +52,13 @@ public class ShopTable {
         return false;
     }
 
-    public void delete(Weapon weapon){
+    public boolean delete(Weapon weapon){
         int loc = search(weapon);
-        if(loc == -1) return;
+        if(loc == -1) return false;
 
         table[loc].weapon.setWeaponName("DELETED");
         numItems--;
+        return true;
     }
 
     public String printShopItems(){

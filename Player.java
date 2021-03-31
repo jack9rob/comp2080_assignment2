@@ -3,11 +3,7 @@ public class Player {
     private int coins;
     private Backpack backpack;
 
-<<<<<<< HEAD
-    public Player(){
-        coins = 100;
 
-=======
     public Player(String name) {
         this.name = name;
         coins = 45;
@@ -50,6 +46,5 @@ public class Player {
     // wrapper for backpack methods
     public boolean addWeapon(Weapon w) {
         return backpack.addWeapon(w);
->>>>>>> cc5c3c5869a6c8d6fe541cdd35f9e07b65c49c8b
     }
 }
