@@ -41,10 +41,12 @@ public class Backpack {
         return false;
     }
 
-    public void printBackpack() {
+    public String printBackpack() {
+        String s = "Backpack: \n";
         for(int i = 0; i < maxItems; i++) {
-            table[i].print();
+            s += table[i].print();
         }
+        return s;
     }
 
     public double getMaxWeight() {

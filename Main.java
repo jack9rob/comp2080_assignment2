@@ -32,9 +32,10 @@ public class Main {
             int damage = getUserIntInput(sc, "Please enter the damage");
             double weight = getUserIntInput(sc, "Please enter the weight");
             double cost = getUserDoubleInput(sc, "Please enter the cost");
-            // create and insert object
+            // create and object
             Weapon weapon = new Weapon(weaponName,range,damage,weight,cost);
             ShopItem item = new ShopItem(weapon,quantity);
+            // check if item can be added to shop, check if shop table method checks for duplicate
             if(shop.insert(item)){
                 System.out.println("Item added");
             }
@@ -49,11 +50,12 @@ public class Main {
 
     }
 
-    public static void deleteItemsFromShop(Scanner sc, ShopTable shop, String message){
+    public static void deleteItemsFromShop(Scanner sc, ShopTable shop, String message){ // add a loop
         System.out.println(message);
         shop.printShopItems();
-        String userInput = sc.next();
-        if(shop.delete(userInput)) { // lol change delete to string
+        sc.nextLine();
+        String userInput = sc.nextLine();
+        if(shop.delete(userInput)) {
             System.out.println("Item deleted");
         } else {
             System.out.println("not deleted");
@@ -62,28 +64,33 @@ public class Main {
 
     public static void buyItemsFromShop(Scanner sc, ShopTable shop, Player player , String message){
         System.out.println(message);
+        // print shop items
+        System.out.println(shop.printShopItems());
+        // get user input for weapon name
         System.out.println("Please enter the weapon name ('exit' to stop): ");
         sc.nextLine();
         String weaponName = sc.nextLine();
         while(weaponName.compareTo("exit") != 0) {
-            // get weapon attributes
-            int quantity = getUserIntInput(sc, "Please enter the quantity");
-            // create and insert object
-
-            ShopItem shopItem = shop.getWeapon(weaponName);
-
-            if(player.getCoins() >= shopItem.weapon.getCost() * quantity){
-                if((player.getBackpack().getCurrWeight() + (shopItem.weapon.getWeight() * quantity)) <=  player.getBackpack().getMaxWeight()){
-                    player.withdraw(shopItem.weapon.getCost() * quantity);
-                    player.buy(shopItem.weapon);
-                    // increase current weight for backpack
-                    shopItem.quantity -= quantity;
-                    System.out.println("You bought " + quantity + " " + shopItem + " for " + (shopItem.weapon.getCost() * quantity) + " you have " + player.getCoins() + " coins left" );
+            // get shop item
+            ShopItem shopItem = shop.getShopItem(weaponName);
+            // check if shop item is valid
+            if(shopItem != null) {
+                // check if player has enough coins
+                if(player.getCoins() >= shopItem.weapon.getCost()) {
+                    // check if weapon can be added to backpack
+                    if(player.addWeapon(shopItem.weapon)){
+                        // remove coins from player
+                        // decrease quantity, add method to do it for shop
+                        // send a message
+                    } else {
+                        System.out.println("Unable to carry weapon");
+                    }
+                } else {
+                    System.out.println("You don't have enough coins");
                 }
-                System.out.println("You don't have enough space");
+            } else {
+                System.out.println("Weapon DNE");
             }
-            System.out.println("You don't have enough coins");
-
             System.out.println("Please enter the weapon name ('exit' to stop): ");
             sc.nextLine();
             weaponName = sc.nextLine();
@@ -95,6 +102,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ShopTable shopTable = new ShopTable();
         Player player = new Player("Jack");
+
+        // populate shop table with weapons
 
         System.out.println("1)\tAdd Items to the shop");
         System.out.println("2)\tDelete Items from the shop");
@@ -119,11 +128,11 @@ public class Main {
                     break;
                 case 4:
                     // print player backpack
-                    player.printBackPack();
+                    System.out.println(player.printBackPack());
                     break;
                 case 5:
                     // print player info
-                    player.toString();
+                    System.out.println(player.toString());
                     break;
             }
             System.out.println("1)\tAdd Items to the shop");

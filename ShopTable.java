@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class ShopTable {
     private ShopItem[] table;
     private int tableSize;
@@ -16,7 +14,7 @@ public class ShopTable {
     private int hashFunction(String weaponName){
         int value=0,weight=1;
         for (int x =0; x<weaponName.length();x++){
-            value += (weaponName.charAt(x)-'a'+1)*weight;
+            value += (weaponName.charAt(x))*weight;
             weight++;
         }
         return value%tableSize;
@@ -37,7 +35,7 @@ public class ShopTable {
     public boolean insert (ShopItem shopItem){
         if (numItems/tableSize < loadFactor){
             int count = 1;
-            int startLoc =hashFunction(shopItem.weapon.getWeaponName());
+            int startLoc = hashFunction(shopItem.weapon.getWeaponName());
             int loc = startLoc;
             while (table[loc] != null && table[loc].weapon.getWeaponName().compareTo("DELETED")!=0){
                 loc = (loc+(count*count))%tableSize;
@@ -62,19 +60,24 @@ public class ShopTable {
     }
 
     public String printShopItems(){
-        String s = "";
+        String s = "Weapons:\n";
         for(ShopItem i : table){
-            if(i != null)
+            if(i != null){
                 s += i.weapon.getWeaponName();
+            }
         }
         return s;
     }
 
-    public ShopItem getWeapon(String weaponName){
+    public ShopItem getShopItem(String weaponName){
         int loc = search(weaponName);
         if(loc != -1){
             return table[loc];
         }
         return null;
+    }
+
+    public void decreaseWeaponQuantity(String weaponName) {
+
     }
 }

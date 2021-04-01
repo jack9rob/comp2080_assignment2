@@ -10,4 +10,8 @@ public class ShopItem {
         weapon = new Weapon(name, range, damage, weight, cost);
         this.quantity = quantity;
     }
+
+    public void decreaseQuantity() {
+        quantity--;
+    }
 }

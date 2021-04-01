@@ -50,13 +50,13 @@ public class WeaponLinkedList {
     }
 
     // need a string method
-    public void print() {
+    public String print() {
         WNode curr = head;
-        String value = "List: ";
+        String value = "";
         while(curr != null) {
-            value += curr.data.getWeaponName() + " ";
+            value += curr.data.getWeaponName() + "\n";
             curr = curr.next;
         }
-        System.out.println(value);
+        return value;
     }
 }
