@@ -54,9 +54,13 @@ public class WeaponLinkedList {
         WNode curr = head;
         String value = "";
         while(curr != null) {
-            value += curr.data.getWeaponName() + "\n";
+            value += curr.data.getWeaponName() + " " + curr.data.getRange() + " " + curr.data.getDamage() + " " + curr.data.getWeight() + " " + curr.data.getCost() + "\n";
             curr = curr.next;
         }
         return value;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
     }
 }

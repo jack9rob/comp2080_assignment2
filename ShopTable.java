@@ -41,6 +41,7 @@ public class ShopTable {
                 loc = (loc+(count*count))%tableSize;
                 count++;
             }
+
         if(search(shopItem.weapon.getWeaponName()) == -1){
             table[loc]=shopItem;
             numItems++;
@@ -62,8 +63,8 @@ public class ShopTable {
     public String printShopItems(){
         String s = "Weapons:\n";
         for(ShopItem i : table){
-            if(i != null){
-                s += i.weapon.getWeaponName();
+            if(i != null && i.weapon.getWeaponName().compareTo("DELETED") != 0){
+                s += i.weapon.getWeaponName() + " " + i.quantity + "\n";
             }
         }
         return s;
@@ -77,7 +78,14 @@ public class ShopTable {
         return null;
     }
 
+    // decrease quantity by 1, if quantity <= 0 delete item
     public void decreaseWeaponQuantity(String weaponName) {
-
+        ShopItem item = getShopItem(weaponName);
+        if(item != null) {
+            item.decreaseQuantity();
+            if(item.quantity <= 0) {
+                delete(weaponName);
+            }
+        }
     }
 }

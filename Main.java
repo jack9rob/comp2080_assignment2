@@ -1,11 +1,16 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
 
     public static int getUserIntInput(Scanner sc, String message){
         System.out.println(message);
+        int input;
         while(!sc.hasNextInt()){
-            sc.nextLine();
+            input = sc.nextInt();
+            if(input < 0){
+                continue;
+            }
             System.out.println(message);
         }
         return sc.nextInt();
@@ -24,7 +29,7 @@ public class Main {
         System.out.println(message);
         System.out.println("Please enter the weapon name ('exit' to stop): ");
         sc.nextLine();
-        String weaponName = sc.nextLine();
+        String weaponName = sc.nextLine().toLowerCase();
         while(weaponName.compareTo("exit") != 0) {
             // get weapon attributes
             int quantity = getUserIntInput(sc, "Please enter the quantity");
@@ -44,7 +49,7 @@ public class Main {
             }
             System.out.println("Please enter the weapon name ('exit' to stop): ");
             sc.nextLine();
-            weaponName = sc.nextLine();
+            weaponName = sc.nextLine().toLowerCase();
         }
         System.out.println(shop.printShopItems());
 
@@ -52,9 +57,9 @@ public class Main {
 
     public static void deleteItemsFromShop(Scanner sc, ShopTable shop, String message){ // add a loop
         System.out.println(message);
-        shop.printShopItems();
+        System.out.println(shop.printShopItems());
         sc.nextLine();
-        String userInput = sc.nextLine();
+        String userInput = sc.nextLine().toLowerCase();
         if(shop.delete(userInput)) {
             System.out.println("Item deleted");
         } else {
@@ -69,7 +74,7 @@ public class Main {
         // get user input for weapon name
         System.out.println("Please enter the weapon name ('exit' to stop): ");
         sc.nextLine();
-        String weaponName = sc.nextLine();
+        String weaponName = sc.nextLine().toLowerCase();
         while(weaponName.compareTo("exit") != 0) {
             // get shop item
             ShopItem shopItem = shop.getShopItem(weaponName);
@@ -80,8 +85,11 @@ public class Main {
                     // check if weapon can be added to backpack
                     if(player.addWeapon(shopItem.weapon)){
                         // remove coins from player
+                        player.withdraw(shopItem.weapon.getCost());
                         // decrease quantity, add method to do it for shop
+                        shop.decreaseWeaponQuantity(weaponName);
                         // send a message
+                        System.out.println("You bought a " + shopItem.weapon.getWeaponName());
                     } else {
                         System.out.println("Unable to carry weapon");
                     }
@@ -92,8 +100,7 @@ public class Main {
                 System.out.println("Weapon DNE");
             }
             System.out.println("Please enter the weapon name ('exit' to stop): ");
-            sc.nextLine();
-            weaponName = sc.nextLine();
+            weaponName = sc.nextLine().toLowerCase();
         }
         System.out.println(shop.printShopItems());
     }
@@ -104,6 +111,17 @@ public class Main {
         Player player = new Player("Jack");
 
         // populate shop table with weapons
+        shopTable.insert(new ShopItem(new Weapon("sword", 1, 10, 3, 10), 10));
+        shopTable.insert(new ShopItem(new Weapon("spear", 3, 6, 3, 10), 20));
+        shopTable.insert(new ShopItem(new Weapon("bow", 10, 4, 1, 10), 10));
+
+        System.out.println("Welcome to our weapon shop! What is your name?");
+        String username = scanner.nextLine();
+        player = new Player(username);
+        System.out.println("Welcome " + username +"! Here is your player:");
+        System.out.println(player.toString());
+
+
 
         System.out.println("1)\tAdd Items to the shop");
         System.out.println("2)\tDelete Items from the shop");

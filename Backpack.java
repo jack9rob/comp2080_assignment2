@@ -44,7 +44,9 @@ public class Backpack {
     public String printBackpack() {
         String s = "Backpack: \n";
         for(int i = 0; i < maxItems; i++) {
-            s += table[i].print();
+            if(!table[i].isEmpty()) {
+                s += table[i].print() + "\n";
+            }
         }
         return s;
     }

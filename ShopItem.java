@@ -14,4 +14,5 @@ public class ShopItem {
     public void decreaseQuantity() {
         quantity--;
     }
+
 }
