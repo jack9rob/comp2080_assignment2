@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class ShopTable {
     private ShopItem[] table;
     private int tableSize;
@@ -64,7 +66,7 @@ public class ShopTable {
         String s = "Weapons:\n";
         for(ShopItem i : table){
             if(i != null && i.weapon.getWeaponName().compareTo("DELETED") != 0){
-                s += i.weapon.getWeaponName() + " " + i.quantity + "\n";
+                s += i.weapon.getWeaponName().toUpperCase(Locale.ROOT) + " Quantity: " + i.quantity + " Weight: " +i.weapon.getWeight() + " Damage: " + i.weapon.getDamage() + "\n";
             }
         }
         return s;

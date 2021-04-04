@@ -43,9 +43,10 @@ public class Backpack {
 
     public String printBackpack() {
         String s = "Backpack: \n";
+        s += "Name-Range-Damage-Weight-Value\n";
         for(int i = 0; i < maxItems; i++) {
             if(!table[i].isEmpty()) {
-                s += table[i].print() + "\n";
+                s += table[i].print()  + "\n";
             }
         }
         return s;

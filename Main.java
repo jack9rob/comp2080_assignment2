@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Main {
         while(!sc.hasNextInt()){
             input = sc.nextInt();
             if(input < 0){
-                continue;
+                return -1;
             }
             System.out.println(message);
         }
@@ -18,8 +19,12 @@ public class Main {
 
     public static double getUserDoubleInput(Scanner sc, String message) {
         System.out.println(message);
+        double input;
         while (!sc.hasNextDouble()) {
-            sc.nextDouble();
+            input = sc.nextDouble();
+            if(input < 0){
+                return -1;
+            }
             System.out.println(message);
         }
         return sc.nextDouble();
@@ -31,21 +36,31 @@ public class Main {
         sc.nextLine();
         String weaponName = sc.nextLine().toLowerCase();
         while(weaponName.compareTo("exit") != 0) {
-            // get weapon attributes
-            int quantity = getUserIntInput(sc, "Please enter the quantity");
-            int range = getUserIntInput(sc, "Please enter the range");
-            int damage = getUserIntInput(sc, "Please enter the damage");
-            double weight = getUserIntInput(sc, "Please enter the weight");
-            double cost = getUserDoubleInput(sc, "Please enter the cost");
-            // create and object
-            Weapon weapon = new Weapon(weaponName,range,damage,weight,cost);
-            ShopItem item = new ShopItem(weapon,quantity);
-            // check if item can be added to shop, check if shop table method checks for duplicate
-            if(shop.insert(item)){
-                System.out.println("Item added");
+            int quantity, range, damage; double weight, cost;
+            Weapon weapon; ShopItem item;
+            //catches invalid inputs or any other exceptions
+            try{
+                // get weapon attributes
+                quantity = getUserIntInput(sc, "Please enter the quantity max:(1,000,000,000)");
+                range = getUserIntInput(sc, "Please enter the range");
+                damage = getUserIntInput(sc, "Please enter the damage");
+                weight = getUserIntInput(sc, "Please enter the weight");
+                cost = getUserDoubleInput(sc, "Please enter the cost");
+                // create and object
+                weapon = new Weapon(weaponName,range,damage,weight,cost);
+                item = new ShopItem(weapon,quantity);
+                // check if item can be added to shop, check if shop table method checks for duplicate
+                if(shop.insert(item)){
+                    System.out.println("Item added");
+                }
+                else{
+                    System.out.println("Item already exist");
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Start over and enter valid inputs!");
             }
-            else{
-                System.out.println("Item already exist");
+            catch (Exception e){
+                System.out.println(e);
             }
             System.out.println("Please enter the weapon name ('exit' to stop): ");
             sc.nextLine();
@@ -63,7 +78,7 @@ public class Main {
         if(shop.delete(userInput)) {
             System.out.println("Item deleted");
         } else {
-            System.out.println("not deleted");
+            System.out.println(userInput + " is not deleted");
         }
     }
 
@@ -89,7 +104,8 @@ public class Main {
                         // decrease quantity, add method to do it for shop
                         shop.decreaseWeaponQuantity(weaponName);
                         // send a message
-                        System.out.println("You bought a " + shopItem.weapon.getWeaponName());
+                        System.out.println("You bought a " + shopItem.weapon.getWeaponName() + " for " + shopItem.weapon.getCost() + " coins" + " weight: " + shopItem.weapon.getWeight() + " damage: " + shopItem.weapon.getDamage());
+                        System.out.println("Remaining Coins: " + player.getCoins() + " Remaining Weight: " + (player.getBackpack().getMaxWeight() - player.getBackpack().getCurrWeight()));
                     } else {
                         System.out.println("Unable to carry weapon");
                     }
@@ -99,10 +115,12 @@ public class Main {
             } else {
                 System.out.println("Weapon DNE");
             }
+            System.out.println("");
+            System.out.println(shop.printShopItems());
             System.out.println("Please enter the weapon name ('exit' to stop): ");
             weaponName = sc.nextLine().toLowerCase();
         }
-        System.out.println(shop.printShopItems());
+        //
     }
 
     public static void main(String[] args) {
@@ -130,8 +148,12 @@ public class Main {
         System.out.println("5)\tView Player");
         System.out.println("6)\tExit");
 
-
+        //checks if the number is within the range
         int userInput = getUserIntInput(scanner, "Enter a number please");
+        while (userInput < 0 || userInput > 6){
+            System.out.println("Please enter a number within the range!");
+            userInput = getUserIntInput(scanner, "Enter a number please");
+        }
 
         while(userInput != 6) {
             switch (userInput) {
