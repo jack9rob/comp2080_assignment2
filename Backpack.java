@@ -1,4 +1,3 @@
-import java.io.Console;
 
 public class Backpack {
     private int numItems;
@@ -14,7 +13,7 @@ public class Backpack {
         maxWeight = 90;
         table = new WeaponLinkedList[maxItems];
 
-        for(int i = 0; i < maxItems; i++) {
+        for (int i = 0; i < maxItems; i++) {
             table[i] = new WeaponLinkedList();
         }
     }
@@ -22,7 +21,7 @@ public class Backpack {
     // used weighted weapon name for hash
     public int hashFunction(String weaponName) {
         int value = 0;
-        for(int i = 0; i < weaponName.length(); i++) {
+        for (int i = 0; i < weaponName.length(); i++) {
             value += (weaponName.charAt(i) * i);
         }
         return value % maxItems;
@@ -30,23 +29,22 @@ public class Backpack {
 
     // can use print to print if weapon can't be added
     public boolean addWeapon(Weapon weapon) {
-        if(numItems < maxItems && currWeight + weapon.getWeight() < maxWeight){
+        if (numItems < maxItems && currWeight + weapon.getWeight() < maxWeight) {
             int loc = hashFunction(weapon.getWeaponName());
             table[loc].insert(weapon);
             currWeight += weapon.getWeight();
             numItems++;
-            System.out.println(weapon.getWeaponName() + ' ' + loc);
             return true;
         }
         return false;
     }
 
     public String printBackpack() {
-        String s = "Backpack: \n";
-        s += "Name-Range-Damage-Weight-Value\n";
-        for(int i = 0; i < maxItems; i++) {
-            if(!table[i].isEmpty()) {
-                s += table[i].print()  + "\n";
+        String s = "Backpack (" + numItems + "/" + maxItems + " items) (" + currWeight + "/" + maxWeight + " units)\n";
+        s += "Name / Range / Damage / Weight / Value\n";
+        for (int i = 0; i < maxItems; i++) {
+            if (!table[i].isEmpty()) {
+                s += table[i].print() + "\n";
             }
         }
         return s;

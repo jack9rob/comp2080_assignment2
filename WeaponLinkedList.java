@@ -1,12 +1,13 @@
 public class WeaponLinkedList {
 
     // node class
-    private class WNode{
+    private class WNode {
         public Weapon data;
         public WNode next;
+
         public WNode(Weapon data) {
             this.data = data;
-            next=null;
+            next = null;
         }
     }
 
@@ -18,12 +19,12 @@ public class WeaponLinkedList {
 
     public void insert(Weapon item) {
         WNode newNode = new WNode(item);
-        if(head == null) {
+        if (head == null) {
             head = newNode;
             return;
         }
         WNode curr = head;
-        while(curr.next != null) {
+        while (curr.next != null) {
             curr = curr.next;
         }
         curr.next = newNode;
@@ -31,8 +32,8 @@ public class WeaponLinkedList {
 
     public Weapon getWeapon(String weaponName) {
         WNode curr = head;
-        while(curr != null) {
-            if(curr.data.getWeaponName().equals(weaponName)) {
+        while (curr != null) {
+            if (curr.data.getWeaponName().equals(weaponName)) {
                 return curr.data;
             }
         }
@@ -41,8 +42,8 @@ public class WeaponLinkedList {
 
     public boolean search(String weaponName) {
         WNode curr = head;
-        while(curr != null) {
-            if(curr.data.getWeaponName().equals(weaponName)) {
+        while (curr != null) {
+            if (curr.data.getWeaponName().equals(weaponName)) {
                 return true;
             }
         }
@@ -53,8 +54,9 @@ public class WeaponLinkedList {
     public String print() {
         WNode curr = head;
         String value = "";
-        while(curr != null) {
-            value += curr.data.getWeaponName() + " " + curr.data.getRange() + " " + curr.data.getDamage() + " " + curr.data.getWeight() + " " + curr.data.getCost() + "\n";
+        while (curr != null) {
+            value += curr.data.getWeaponName() + " -> " + curr.data.getRange() + " / " + curr.data.getDamage() + " / "
+                    + curr.data.getWeight() + " / " + curr.data.getCost() + "\n";
             curr = curr.next;
         }
         return value;
